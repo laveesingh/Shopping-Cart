@@ -11,6 +11,6 @@ app.get('/', function(request, response){
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
-app.listen(3000, function(){
-  console.log("Web server running on port 3000")
+app.listen(3001, function(){
+  console.log("Web server running on port 3001")
 })
