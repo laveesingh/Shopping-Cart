@@ -1,22 +1,23 @@
 'use strict'
-import { createStore } from 'redux';
+import { createStore } from 'redux'
 
 // define reducers
-const reducer = function(state=[], action){
+const reducer = function(state={books:[]}, action){
   switch(action.type){
     case 'POST_BOOK':
-      return state = action.payload;
-      break;
+      let books = state.books.concat(action.payload)
+      return { books }
+      break
   }
-  return state;
+  return state
 }
 
 // create store
-const store = createStore(reducer);
+const store = createStore(reducer)
 
 store.subscribe(function(){
-  console.log('Current State is:', store.getState());
-  console.log('Price of second book: ', store.getState()[1].price);
+  console.log('Current State is:', store.getState())
+  console.log('Price of second book: ', store.getState().books[1].price)
 })
 
 // create and dispatch actions
@@ -34,4 +35,12 @@ store.dispatch({
       'price': 800
     }
   ]
+})
+store.dispatch({
+  type: 'POST_BOOK',
+  payload: {
+      'title': 'harry potter and the prisoner of azakaban',
+      'author': 'j. k. rowling',
+      'price': 650
+  }
 })
